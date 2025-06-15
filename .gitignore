@@ -4,3 +4,4 @@ __pycache__/
 data/chroma_db/
 *.log
 .DS_Store
+*.pdf
