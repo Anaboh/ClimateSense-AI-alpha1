@@ -3,7 +3,7 @@ services:
     name: climatesense-ai
     runtime: python
     buildCommand: ./setup.sh
-    startCommand: streamlit run app.py --server.port=$PORT
+    startCommand: streamlit run app.py --server.port=$PORT --server.address=0.0.0.0
     envVars:
       - key: PERPLEXITY_API_KEY
-        value: your_perplexity_api_key
+        sync: false  # You'll set this manually in Render dashboard
