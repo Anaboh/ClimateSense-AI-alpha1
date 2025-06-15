@@ -1,5 +1,8 @@
 from langchain.chains import RetrievalQA
-from langchain_openai import ChatOpenAI
+# REPLACE THIS:
+# from langchain_openai import ChatOpenAI
+# WITH THIS:
+from langchain_community.chat_models import ChatOpenAI
 from utils.config import get_vector_store
 import os
 
@@ -10,7 +13,7 @@ def get_climate_insights(query, report_file):
     
     # Initialize Perplexity via OpenAI SDK
     llm = ChatOpenAI(
-        api_key=os.getenv("PERPLEXITY_API_KEY"),
+        openai_api_key=os.getenv("PERPLEXITY_API_KEY"),
         base_url="https://api.perplexity.ai",
         model="pplx-7b-chat",
         temperature=0.1,
