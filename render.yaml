@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: climatesense-ai
+    runtime: python
+    buildCommand: ./setup.sh
+    startCommand: streamlit run app.py --server.port=$PORT
+    envVars:
+      - key: PERPLEXITY_API_KEY
+        value: your_perplexity_api_key
+      - key: IPCC_MONITOR_URLS
+        value: "https://www.ipcc.ch/reports/"
