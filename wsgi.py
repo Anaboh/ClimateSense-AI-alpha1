@@ -1,12 +1,16 @@
 from streamlit.web.cli import main
+import sys
 
 def run_streamlit():
-    import sys
     sys.argv = [
         "streamlit", "run", "app.py",
-        "--server.port=8050",  # Use fixed internal port
+        "--server.port=8050",
         "--server.address=0.0.0.0",
         "--server.headless=true",
-        "--global.developmentMode=false"
+        "--global.developmentMode=false",
+        "--browser.gatherUsageStats=false"
     ]
     main()
+
+if __name__ == "__main__":
+    run_streamlit()
