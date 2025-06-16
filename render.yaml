@@ -2,7 +2,7 @@ services:
   - type: web
     name: climatesense-ai
     runtime: python
-    buildCommand: ./setup.sh
+    buildCommand: chmod +x setup.sh && ./setup.sh
     startCommand: gunicorn wsgi:run_streamlit --timeout 300 --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
     envVars:
       - key: PERPLEXITY_API_KEY
