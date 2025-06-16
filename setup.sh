@@ -11,3 +11,6 @@ mkdir -p data/chroma_db
 
 # Download IPCC reports
 python download_reports.py
+
+# Precompute vector stores asynchronously
+python precompute_vectors.py
