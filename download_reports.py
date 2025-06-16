@@ -1,19 +1,19 @@
 import os
 import requests
-from tqdm import tqdm
+import argparse
 
-REPORTS = {
+# Essential reports only
+ESSENTIAL_REPORTS = {
     "AR6 Synthesis Report (SPM)": "https://www.ipcc.ch/report/ar6/syr/downloads/report/IPCC_AR6_SYR_SPM.pdf",
-    "AR6 Climate Science (WGI SPM)": "https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_SPM.pdf",
-    "AR6 Impacts & Adaptation (WGII SPM)": "https://www.ipcc.ch/report/ar6/wg2/downloads/report/IPCC_AR6_WGII_SPM.pdf",
-    "AR6 Mitigation (WGIII SPM)": "https://www.ipcc.ch/report/ar6/wg3/downloads/report/IPCC_AR6_WGIII_SPM.pdf"
+    "AR6 Climate Science (WGI SPM)": "https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_SPM.pdf"
 }
 
-def download_reports():
+def download_reports(essential_only=False):
     os.makedirs("data/reports", exist_ok=True)
+    reports = ESSENTIAL_REPORTS if essential_only else REPORTS
     
-    print("Downloading IPCC reports...")
-    for name, url in tqdm(REPORTS.items()):
+    print("🌱 Downloading essential IPCC reports...")
+    for name, url in reports.items():
         filename = url.split('/')[-1]
         path = f"data/reports/{filename}"
         
@@ -27,8 +27,9 @@ def download_reports():
                 print(f"Downloaded {filename}")
             except Exception as e:
                 print(f"Error downloading {filename}: {str(e)}")
-        else:
-            print(f"{filename} already exists")
 
 if __name__ == "__main__":
-    download_reports()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--essential", action="store_true", help="Download only essential reports")
+    args = parser.parse_args()
+    download_reports(essential_only=args.essential)
