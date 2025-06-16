@@ -1,7 +1,4 @@
 from langchain.chains import RetrievalQA
-# REPLACE THIS:
-# from langchain_openai import ChatOpenAI
-# WITH THIS:
 from langchain_community.chat_models import ChatOpenAI
 from utils.config import get_vector_store
 import os
