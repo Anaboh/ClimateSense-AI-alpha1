@@ -3,9 +3,11 @@ services:
     name: climatesense-ai
     runtime: python
     buildCommand: chmod +x setup.sh && ./setup.sh
-    startCommand: gunicorn wsgi:run_streamlit --timeout 300 --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
+    startCommand: gunicorn wsgi:run_streamlit --timeout 600 --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
     envVars:
       - key: PERPLEXITY_API_KEY
         sync: false
       - key: PYTHONUNBUFFERED
         value: 1
+      - key: PPLX_MODEL
+        value: pplx-7b-online  # Faster model
